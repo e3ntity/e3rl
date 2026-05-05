@@ -1,4 +1,4 @@
-from rsl_rl.algorithms import PPO, DPPO
+from e3rl.algorithms import PPO, DPPO
 from .dppo import dppo_hyperparams
 from .ppo import ppo_hyperparams
 

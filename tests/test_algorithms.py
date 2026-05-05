@@ -1,9 +1,9 @@
 import unittest
 
-from rsl_rl.algorithms import D4PG, DDPG, DPPO, DSAC, PPO, SAC, TD3
-from rsl_rl.env.gym_env import GymEnv
-from rsl_rl.modules import Network
-from rsl_rl.runners.runner import Runner
+from e3rl.algorithms import D4PG, DDPG, DPPO, DSAC, PPO, SAC, TD3
+from e3rl.env.gym_env import GymEnv
+from e3rl.modules import Network
+from e3rl.runners.runner import Runner
 
 DEVICE = "cpu"
 

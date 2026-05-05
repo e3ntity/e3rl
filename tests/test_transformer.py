@@ -1,7 +1,7 @@
 import unittest
 import torch
 
-from rsl_rl.modules import Transformer  # Assuming the Transformer class is in a module named my_module
+from e3rl.modules import Transformer  # Assuming the Transformer class is in a module named my_module
 
 
 class TestTransformer(unittest.TestCase):

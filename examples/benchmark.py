@@ -3,10 +3,10 @@ import os
 import torch
 import wandb
 
-from rsl_rl.algorithms import *
-from rsl_rl.env.gym_env import GymEnv
-from rsl_rl.runners.runner import Runner
-from rsl_rl.runners.callbacks import make_wandb_cb
+from e3rl.algorithms import *
+from e3rl.env.gym_env import GymEnv
+from e3rl.runners.runner import Runner
+from e3rl.runners.callbacks import make_wandb_cb
 
 from hyperparams import hyperparams
 from wandb_config import WANDB_API_KEY, WANDB_ENTITY
@@ -65,7 +65,7 @@ def run(alg_class, env_name, env_kwargs={}):
         config=config,
         entity=WANDB_ENTITY,
         group=f"{alg_class.__name__}_{env_name}",
-        project="rsl_rl-benchmark",
+        project="e3rl-benchmark",
         tags=[alg_class.__name__, env_name, "train"],
     )
 

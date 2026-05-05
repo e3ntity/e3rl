@@ -1,4 +1,4 @@
-# RSL RL
+# e3rl
 
 Fast and simple implementation of RL algorithms, designed to run fully on GPU.
 
@@ -11,68 +11,71 @@ Currently, the following algorithms are implemented:
 - Soft Actor Critic (SAC)
 - Twin Delayed DDPG (TD3)
 
-**Maintainer**: David Hoeller, Nikita Rudin <br/>
-**Affiliation**: Robotic Systems Lab, ETH Zurich & NVIDIA <br/>
-**Contact**: Nikita Rudin (rudinn@ethz.ch), Lukas Schneider (lukas@luschneider.com)
+**Maintainer**: Lukas Schneider <br/>
+**Contact**: Lukas Schneider (schneider.lukas@protonmail.com)
 
-## Citation
-
-If you use our code in your research, please cite us:
-```
-@misc{schneider2023learning,
-  archivePrefix={arXiv},
-  author={Lukas Schneider and Jonas Frey and Takahiro Miki and Marco Hutter},
-  eprint={2309.14246},
-  primaryClass={cs.RO}
-  title={Learning Risk-Aware Quadrupedal Locomotion using Distributional Reinforcement Learning}, 
-  year={2023},
-}
-```
+This project was originally forked from [rsl_rl](https://github.com/leggedrobotics/rsl_rl).
+See [CONTRIBUTORS.md](CONTRIBUTORS.md) for upstream attribution.
 
 ## Installation
 
 To install the package, run the following command in the root directory of the repository:
 
 ```bash
-$ pip3 install -e .
+pip install -e .
 ```
 
-Examples can be run from the `examples/` directory.
-The example directory also include hyperparameters tuned for some gym environments.
-These are automatically loaded when running the example.
-Videos of the trained policies are periodically saved to the `videos/` directory.
+Optional extras are available for additional functionality:
 
 ```bash
-$ python3 examples/example.py
+pip install -e ".[gym,logging,export]"  # gymnasium, tensorboard/wandb, ONNX export
+pip install -e ".[dev]"                 # linters and pre-commit
+pip install -e ".[docs]"                # sphinx
 ```
 
-To run gym mujoco environments, you need a working installation of the mujoco simulator and [mujoco_py](https://github.com/openai/mujoco-py).
+## Examples
+
+Examples can be run from the `examples/` directory. The example directory also includes hyperparameters tuned for some gym environments, which are loaded automatically. Videos of trained policies are periodically saved to `videos/`.
+
+```bash
+python examples/example.py
+```
 
 ## Tests
 
-The repository contains a set of tests to ensure that the algorithms are working as expected.
-To run the tests, simply execute:
-
 ```bash
-$ cd tests/ && python -m unittest
+cd tests/ && python -m unittest
 ```
 
 ## Documentation
 
-To generate documentation, run the following command in the root directory of the repository:
-
 ```bash
-$ pip3 install sphinx sphinx-rtd-theme
-$ sphinx-apidoc -o docs/source . ./examples
-$ cd docs/ && make html
+pip install -e ".[docs]"
+sphinx-apidoc -o docs/source . ./examples
+cd docs/ && make html
 ```
 
-## Contribution Guidelines
+## Citation
 
-We use [`black`](https://github.com/psf/black) formatter for formatting the python code.
-You should [configure `black` with VSCode](https://dev.to/adamlombard/how-to-use-the-black-python-code-formatter-in-vscode-3lo0) or you can manually format files with:
+If you use this code in your research, please cite:
+
+```bibtex
+@misc{schneider2023learning,
+  archivePrefix={arXiv},
+  author={Lukas Schneider and Jonas Frey and Takahiro Miki and Marco Hutter},
+  eprint={2309.14246},
+  primaryClass={cs.RO},
+  title={Learning Risk-Aware Quadrupedal Locomotion using Distributional Reinforcement Learning},
+  year={2023},
+}
+```
+
+## Contributing
+
+The project uses [`ruff`](https://github.com/astral-sh/ruff) for linting and formatting, run via `pre-commit`:
 
 ```bash
-$ pip install black
-$ black --line-length 120 .
+pip install -e ".[dev]"
+pre-commit install
+pre-commit run --all-files
 ```

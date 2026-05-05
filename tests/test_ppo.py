@@ -1,7 +1,7 @@
 import torch
 import unittest
-from rsl_rl.algorithms import PPO
-from rsl_rl.env.pole_balancing import PoleBalancing
+from e3rl.algorithms import PPO
+from e3rl.env.pole_balancing import PoleBalancing
 
 
 class FakeCritic(torch.nn.Module):

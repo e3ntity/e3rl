@@ -1,7 +1,7 @@
 import torch
 import unittest
 
-from rsl_rl.utils.recurrency import trajectories_to_transitions, transitions_to_trajectories
+from e3rl.utils.recurrency import trajectories_to_transitions, transitions_to_trajectories
 
 
 class TrajectoryConversionTest(unittest.TestCase):

@@ -1,8 +1,8 @@
 import copy
 import numpy as np
 
-from rsl_rl.algorithms import DPPO
-from rsl_rl.modules import QuantileNetwork
+from e3rl.algorithms import DPPO
+from e3rl.modules import QuantileNetwork
 
 default = dict()
 default["env_kwargs"] = dict(environment_count=1)

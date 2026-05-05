@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.abspath(".."))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "rsl_rl"
+project = "e3rl"
 copyright = "2023, Lukas Schneider"
 author = "Lukas Schneider"
 release = "1.0.0"

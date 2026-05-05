@@ -1,7 +1,7 @@
 import torch
 
-from rsl_rl.algorithms import DPPO, PPO
-from rsl_rl.modules import QuantileNetwork
+from e3rl.algorithms import DPPO, PPO
+from e3rl.modules import QuantileNetwork
 
 NETWORKS = {"small": [64, 64], "medium": [256, 256], "large": [512, 256, 128]}
 

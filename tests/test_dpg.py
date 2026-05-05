@@ -1,7 +1,7 @@
 import torch
 import unittest
-from rsl_rl.algorithms.dpg import AbstractDPG
-from rsl_rl.env.pole_balancing import PoleBalancing
+from e3rl.algorithms.dpg import AbstractDPG
+from e3rl.env.pole_balancing import PoleBalancing
 
 
 class DPG(AbstractDPG):

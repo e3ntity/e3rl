@@ -1,7 +1,7 @@
 import torch
 import unittest
-from rsl_rl.algorithms import DPPO
-from rsl_rl.env.vec_env import VecEnv
+from e3rl.algorithms import DPPO
+from e3rl.env.vec_env import VecEnv
 
 ACTION_SIZE = 3
 ENV_COUNT = 3

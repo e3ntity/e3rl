@@ -1,4 +1,4 @@
-# RSL-RL Maintainers and Contributors
+# e3rl Maintainers and Contributors
 
 This is the official list of developers and contributors.
 
@@ -10,17 +10,24 @@ Email addresses are tracked elsewhere to avoid spam.
 
 Please keep the lists sorted alphabetically.
 
-## Maintainers
+## Maintainer
 
-* Robotic Syetms Lab, ETH Zurich
+* Lukas Schneider
+
+## Upstream
+
+This project was forked from [rsl_rl](https://github.com/leggedrobotics/rsl_rl). The
+following people contributed to the original codebase:
+
+### Original Maintainers
+
 * NVIDIA Corporation
-
----
+* Robotic Systems Lab, ETH Zurich
 
 * David Hoeller
 * Nikita Rudin
 
-## Contributors
+### Original Contributors
 
 * Eric Vollenweider
 * Fabian Jenelten
@@ -30,3 +37,7 @@ Please keep the lists sorted alphabetically.
 * Matthijs van der Boon
 * Mayank Mittal
 * Zhang Chong
+
+## Contributors
+
+<!-- Add new contributors below, sorted alphabetically. -->

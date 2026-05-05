@@ -1,8 +1,8 @@
 import torch
 import unittest
-from rsl_rl.algorithms import PPO
-from rsl_rl.env.vec_env import VecEnv
-from rsl_rl.runners.runner import Runner
+from e3rl.algorithms import PPO
+from e3rl.env.vec_env import VecEnv
+from e3rl.runners.runner import Runner
 
 
 class FakeNetwork(torch.nn.Module):

@@ -1,8 +1,8 @@
 import torch
 
-from rsl_rl.algorithms import *
-from rsl_rl.env.gym_env import GymEnv
-from rsl_rl.runners.runner import Runner
+from e3rl.algorithms import *
+from e3rl.env.gym_env import GymEnv
+from e3rl.runners.runner import Runner
 from hyperparams import hyperparams
 
 

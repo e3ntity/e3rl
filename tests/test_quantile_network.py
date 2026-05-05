@@ -1,6 +1,6 @@
 import torch
 import unittest
-from rsl_rl.modules.quantile_network import QuantileNetwork
+from e3rl.modules.quantile_network import QuantileNetwork
 
 
 class QuantileNetworkTest(unittest.TestCase):

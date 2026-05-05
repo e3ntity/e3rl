@@ -1,48 +1,67 @@
-[tool.isort]
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
 
-py_version = 37
-line_length = 120
-group_by_package = true
-
-# Files to skip
-skip_glob = [".vscode/*"]
-
-# Order of imports
-sections = [
-    "FUTURE",
-    "STDLIB",
-    "THIRDPARTY",
-    "FIRSTPARTY",
-    "LOCALFOLDER",
+[project]
+name = "e3rl"
+version = "0.1.0"
+description = "Fast and simple RL algorithms implemented in PyTorch."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Lukas Schneider", email = "lukas@luschneider.com" }]
+keywords = ["reinforcement-learning", "pytorch", "rl", "robotics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-
-# Extra standard libraries considered as part of python (permissive licenses)
-extra_standard_library = [
+dependencies = [
     "numpy",
     "torch",
-    "tensordict",
-    "warp",
-    "typing_extensions",
-    "git",
 ]
-# Imports from this repository
-known_first_party = "rsl_rl"
 
-[tool.pyright]
+[project.optional-dependencies]
+gym = ["gym"]
+logging = ["tensorboard", "wandb", "GitPython"]
+export = ["onnx"]
+dev = ["ruff", "pre-commit"]
+docs = ["sphinx", "sphinx-rtd-theme"]
 
-include = ["rsl_rl"]
+[project.urls]
+Homepage = "https://github.com/lukas-schneider/e3rl"
+Repository = "https://github.com/lukas-schneider/e3rl"
 
-typeCheckingMode = "basic"
-pythonVersion = "3.7"
-pythonPlatform = "Linux"
-enableTypeIgnoreComments = true
+[tool.setuptools.packages.find]
+include = ["e3rl*"]
+exclude = ["tests*", "examples*", "docs*"]
 
-# This is required as the CI pre-commit does not download the module (i.e. numpy, torch, prettytable)
-# Therefore, we have to ignore missing imports
-reportMissingImports = "none"
-# This is required to ignore for type checks of modules with stubs missing.
-reportMissingModuleSource = "none" # -> most common: prettytable in mdp managers
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = [".vscode", "docs"]
 
-reportGeneralTypeIssues = "none"       # -> raises 218 errors (usage of literal MISSING in dataclasses)
-reportOptionalMemberAccess = "warning" # -> raises 8 errors
-reportPrivateUsage = "warning"
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "UP", "SIM", "RET"]
+ignore = [
+    "E402",
+    "E501",
+    "E203",
+    "RET504",
+    "RET505",
+    "SIM102",
+    "SIM117",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["e3rl"]
+extra-standard-library = ["numpy", "torch", "tensordict", "warp", "typing_extensions", "git"]
