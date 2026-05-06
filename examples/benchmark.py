@@ -1,12 +1,12 @@
 import numpy as np
 import os
-import torch
 import wandb
 
 from e3rl.algorithms import *
 from e3rl.env.gym_env import GymEnv
 from e3rl.runners.runner import Runner
 from e3rl.runners.callbacks import make_wandb_cb
+from e3rl.utils import resolve_device
 
 from hyperparams import hyperparams
 from wandb_config import WANDB_API_KEY, WANDB_ENTITY
@@ -17,7 +17,7 @@ ENVIRONMENTS = ["BipedalWalker-v3"]
 ENVIRONMENT_KWARGS = [{}]
 EXPERIMENT_DIR = os.environ.get("EXPERIMENT_DIRECTORY", "./")
 EXPERIMENT_NAME = os.environ.get("EXPERIMENT_NAME", "benchmark")
-DEVICE = "cuda:0" if torch.cuda.is_available() else "cpu"
+DEVICE = resolve_device()
 RENDER_VIDEO = False
 RETURN_EPOCHS = 100 # Number of epochs to average return over
 LOG_WANDB = True

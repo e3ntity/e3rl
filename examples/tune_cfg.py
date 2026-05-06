@@ -1,7 +1,6 @@
-import torch
-
 from e3rl.algorithms import DPPO, PPO
 from e3rl.modules import QuantileNetwork
+from e3rl.utils import resolve_device
 
 NETWORKS = {"small": [64, 64], "medium": [256, 256], "large": [512, 256, 128]}
 
@@ -46,7 +45,7 @@ def sample_dppo_hyperparams(trial):
         "var-super-risk-averse": QuantileNetwork.measure_percentile,
         "var-super-risk-seeking": QuantileNetwork.measure_percentile,
     }[value_measure]
-    device = "cuda:0" if env_count * num_steps_per_env > 2048 and torch.cuda.is_available() else "cpu"
+    device = resolve_device() if env_count * num_steps_per_env > 2048 else "cpu"
 
     agent_kwargs = dict(
         actor_activations=([actor_net_activation] * len(actor_net_arch)) + ["linear"],
@@ -99,7 +98,7 @@ def sample_ppo_hyperparams(trial):
 
     actor_net_arch = NETWORKS[actor_net_arch]
     critic_net_arch = NETWORKS[critic_net_arch]
-    device = "cuda:0" if env_count * num_steps_per_env > 2048 and torch.cuda.is_available() else "cpu"
+    device = resolve_device() if env_count * num_steps_per_env > 2048 else "cpu"
 
     agent_kwargs = dict(
         actor_activations=([actor_net_activation] * len(actor_net_arch)) + ["linear"],

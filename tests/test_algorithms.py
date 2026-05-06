@@ -1,30 +1,55 @@
 import unittest
 
+import torch
+
 from e3rl.algorithms import D4PG, DDPG, DPPO, DSAC, PPO, SAC, TD3
 from e3rl.env.gym_env import GymEnv
 from e3rl.modules import Network
 from e3rl.runners.runner import Runner
 
-DEVICE = "cpu"
+DEVICES = ["cpu"]
+if getattr(torch.backends, "mps", None) is not None and torch.backends.mps.is_available():
+    DEVICES.append("mps")
+if torch.cuda.is_available():
+    DEVICES.append("cuda:0")
+
+
+def _per_device(test_method):
+    def wrapper(self):
+        for device in DEVICES:
+            with self.subTest(device=device):
+                self.device = device
+                test_method(self)
+
+    wrapper.__name__ = test_method.__name__
+    return wrapper
+
+
+def per_device(cls):
+    for name, attr in list(cls.__dict__.items()):
+        if name.startswith("test_") and callable(attr):
+            setattr(cls, name, _per_device(attr))
+    return cls
 
 
 class AlgorithmTestCaseMixin:
     algorithm_class = None
+    device = "cpu"
 
     def _make_env(self, params={}):
-        my_params = dict(name="LunarLanderContinuous-v2", device=DEVICE, environment_count=4)
+        my_params = dict(name="LunarLanderContinuous-v3", device=self.device, environment_count=4)
         my_params.update(params)
 
         return GymEnv(**my_params)
 
     def _make_agent(self, env, agent_params={}):
-        return self.algorithm_class(env, device=DEVICE, **agent_params)
+        return self.algorithm_class(env, device=self.device, **agent_params)
 
     def _make_runner(self, env, agent, runner_params={}):
         if not runner_params or "num_steps_per_env" not in runner_params:
             runner_params["num_steps_per_env"] = 6
 
-        return Runner(env, agent, device=DEVICE, **runner_params)
+        return Runner(env, agent, device=self.device, **runner_params)
 
     def _learn(self, env, agent, runner_params={}):
         runner = self._make_runner(env, agent, runner_params)
@@ -57,10 +82,12 @@ class RecurrentAlgorithmTestCaseMixin(AlgorithmTestCaseMixin):
         self._learn(env, agent, dict(num_steps_per_env=1))
 
 
+@per_device
 class D4PGTest(AlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = D4PG
 
 
+@per_device
 class DDPGTest(AlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = DDPG
 
@@ -81,6 +108,7 @@ qrdqn_params = dict(
 )
 
 
+@per_device
 class DPPOTest(RecurrentAlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = DPPO
 
@@ -149,18 +177,22 @@ class DPPOTest(RecurrentAlgorithmTestCaseMixin, unittest.TestCase):
         self._learn(env, agent)
 
 
+@per_device
 class DSACTest(AlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = DSAC
 
 
+@per_device
 class PPOTest(RecurrentAlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = PPO
 
 
+@per_device
 class SACTest(AlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = SAC
 
 
+@per_device
 class TD3Test(AlgorithmTestCaseMixin, unittest.TestCase):
     algorithm_class = TD3
 

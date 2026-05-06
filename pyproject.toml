@@ -28,7 +28,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-gym = ["gym"]
+gym = ["gymnasium[box2d]"]
 logging = ["tensorboard", "wandb", "GitPython"]
 export = ["onnx"]
 dev = ["ruff", "pre-commit"]

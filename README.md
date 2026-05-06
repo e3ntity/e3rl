@@ -33,6 +33,10 @@ pip install -e ".[dev]"                 # linters and pre-commit
 pip install -e ".[docs]"                # sphinx
 ```
 
+## Device support
+
+e3rl runs on CUDA, Apple Silicon (MPS), and CPU. Pass `device="cuda:0"`, `device="mps"`, or `device="cpu"` to envs, agents, and runners. The helper `e3rl.utils.resolve_device()` auto-selects the best available backend in the order **CUDA → MPS → CPU** and is used by the bundled examples.
+
 ## Examples
 
 Examples can be run from the `examples/` directory. The example directory also includes hyperparameters tuned for some gym environments, which are loaded automatically. Videos of trained policies are periodically saved to `videos/`.
