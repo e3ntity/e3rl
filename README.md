@@ -49,7 +49,7 @@ The clips below show the first and last recorded episodes from a single training
 
 | Untrained | After 5000 iterations |
 | :---: | :---: |
-| <video src="assets/example-first-episode.mp4" controls width="360"></video> | <video src="assets/example-last-episode.mp4" controls width="360"></video> |
+| ![Untrained](assets/example-first-episode.gif) | ![Trained](assets/example-last-episode.gif) |
 
 ## Tests
 
