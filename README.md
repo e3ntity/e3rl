@@ -45,6 +45,12 @@ Examples can be run from the `examples/` directory. The example directory also i
 python examples/example.py
 ```
 
+The clips below show the first and last recorded episodes from a single training run of `examples/example.py` (DPPO on `BipedalWalker-v3`), illustrating convergence from a randomly initialized policy to a walking gait:
+
+| Untrained | After 5000 iterations |
+| :---: | :---: |
+| <video src="assets/example-first-episode.mp4" controls width="360"></video> | <video src="assets/example-last-episode.mp4" controls width="360"></video> |
+
 ## Tests
 
 ```bash
