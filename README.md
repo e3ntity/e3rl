@@ -14,7 +14,7 @@ Currently, the following algorithms are implemented:
 **Maintainer**: Lukas Schneider <br/>
 **Contact**: Lukas Schneider (schneider.lukas@protonmail.com)
 
-This project was originally forked from [rsl_rl](https://github.com/leggedrobotics/rsl_rl).
+This project was originally forked from [rsl_rl](https://github.com/leggedrobotics/rsl_rl) (actively maintained).
 See [CONTRIBUTORS.md](CONTRIBUTORS.md) for upstream attribution.
 
 ## Installation

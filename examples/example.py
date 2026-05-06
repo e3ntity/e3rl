@@ -22,7 +22,10 @@ def main():
     runner = Runner(env, agent, device=DEVICE, **hp["runner_kwargs"])
     runner._learn_cb = [Runner._log]
 
-    runner.learn(5000)
+    try:
+        runner.learn(5000)
+    finally:
+        env.close()
 
 
 if __name__ == "__main__":
